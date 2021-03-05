@@ -2,40 +2,314 @@
 <html>
 
 <head>
-    <title></title>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/styles.css">
-    <script type="text/javascript" src="js/require.js"></script>
-    <script type="text/javascript">
-        (function () {
-            var config = {
-                baseUrl: 'js'
-            };
-
-            var dependencies = [
-                'customActivity'
-            ];
-
-            require(config, dependencies);
-        })();
-    </script>
+	<title>Telia</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="x-ua-compatible" content="ie=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="customnoppa.css">
+	<link rel="icon" href="favicon.png">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/require.js"></script>
+	<script type="text/javascript">
+		(function () {
+			var config = {
+				baseUrl: 'js'
+			};
+			var dependencies = [
+				'customActivity'
+			];
+			require(config, dependencies);
+		})();
+	</script>
+	<script type="text/javascript">
+		function channel() {
+			var channel = $('#pchannel').val();
+			$('#pchannel').val();
+			console.log(channel)
+			$('#channel').val(channel);
+			$("div.group.extra").hide();
+			$('#ppartner').children().remove();
+			switch (channel) {
+				case "SMS":
+					var message = $("#message").val();
+					$("div.group.extra.sms").show();
+					sms();
+					break;
+				case "Email":
+					var emailid = $('#emailid').val();
+					$("div.group.extra.email").show();
+					break;
+				case "TELESALES":
+					$("div.group.extra.telesales").show();
+					$('#ppartner').append(new Option("SOLDEM", "SOLDEM")); 
+					$('#ppartner').append(new Option("STAFFPOINT LAHTI", "STAFFPOINT LAHTI")); 
+					$('#ppartner').append(new Option("STAFFPOINT OULU", "STAFFPOINT OULU")); 
+					$('#partner').val("SOLDEM")
+					break;
+				case "FACEBOOK CUSTOM AUDIENCE":
+					$("div.group.extra.fb").show();
+					break;
+				case "GOOGLE CUSTOMER MATCH":
+					$("div.group.extra.google").show();
+					break;
+				case "LETTER":
+					$("div.group.extra.letter").show();
+					$('#ppartner').append(new Option("JP-Postitus", "JP-Postitus"));
+					$('#partner').val("JP-Postitus")
+					break;
+				default:
+					$("div.group.extra").hide();
+			}
+		}
+	</script>
 </head>
 
 <body>
-    <div id="step1" class="step">
-        <div class="slds-grid">
+	<div id="step1" class="step">
+		<div class="slds-grid">
+			<main class="slds-col">
+				<div class="header">
+					<h1 id='header'>Loading saved values...</h1>
+				</div>
+				<div class="container">
+					<h2>PLEASE HAVE YOUR ENTRY SOURCE CONFIGURED AND JOURNEY SAVED
+						<u>BEFORE</u> CONFIGURING THIS ACTIVITY. IF YOU HAVE ANY ISSUES PLEASE VISIT
+						<a href='http://wiki.intra.sonera.fi/display/MAVI/Custom+Communication+Node'>HERE</a>
+					</h2>
+					<h3>WHEN SELECTING SMS THE VIEW WILL FREEZE FOR 2 SECONDS. THE SYSTEM FETCHES SMS MESSAGES FROM MC001 WHICH GETS THEM FROM
+						MARKETING CLOUD</h3>
+				</div>
+				<div class="formi">
+					<div class="group">
+						<h3>COMMUNICATION CHANNEL</h3>
+						<input type="hidden" id="channel">
+						<select class="dropdown" id="pchannel" onchange="channel();">
+							<option value="Email">EMAIL</option>
+							<option value="SMS">SMS</option>
+							<option value="TELESALES">TELESALES</option>
+							<option value="FACEBOOK CUSTOM AUDIENCE">FACEBOOK CUSTOM AUDIENCE</option>
+							<option value="GOOGLE CUSTOMER MATCH">GOOGLE CUSTOMER MATCH</option>
+							<option value="PUSH">PUSH</option>
+							<option value="LETTER">LETTER</option>
+						</select>
+						<span class="highlight"></span>
+						<span class="bar"></span>
 
-            <main class="slds-col">
-               
-                <h1>welcome to your activity!</h1>
-            </main>
-            
+					</div>
+					<div class="group">
+						<h3>CELL TYPE</h3>
+						<input type="hidden" id="cell" name="cell" value="Target Group">
+						<select class="dropdown" id="pcell" onchange="cell();">
+							<option value="Target Group">TARGET GROUP</option>
+							<option value="Holdout">HOLDOUT</option>
+						</select>
+						<span class="highlight"></span>
+						<span class="bar"></span>
+					</div>
+					<div class="group">
+						<h3>PROGRAM</h3>
+						<input type="hidden" id="program" name="program">
+						<select class="dropdown" id="cprogram" onchange="cprogram();">
+							<option value="ANT">ANT</option>
+							<option value="CAR">CAR</option>
+							<option value="CIP">CIP</option>
+							<option value="EOC">EOC</option>
+							<option value="INF">INF</option>
+							<option value="NES">NES</option>
+							<option value="NPS">NPS</option>
+							<option value="RES">RES</option>
+							<option value="RSC">RSC</option>
+							<option value="SLS">SLS</option>
+							<option value="WIN">WIN</option>
+						</select>
+						<span class="highlight"></span>
+						<span class="bar"></span>
+					</div>
 
-        </div>
 
-    </div>
+					<div class="group">
+						<h3>CAMPAIGN CODE</h3>
+						<input type="text" required id="campaign_code">
+					</div>
+					<div class="group">
+						<h3>DESCRIPTION</h3>
+						<input type="text" required id="description">
+					</div>
+					<div class="group">
+						<h3>JIRA</h3>
+						<input type="text" required id="jira">
+					</div>
+
+					<div class="group">
+						<h3>PRODUCTION</h3>
+						<input type="hidden" id="production" name="production" value="true" checked>
+						<div class="checkbox-container">
+							<div class="checkbox-box">
+								<div class="checkboxFive">
+									<input type="checkbox" name="production" id="prod" onChange="prodChange()" checked>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="group sms">
+						<h3>SENDER NAME</h3>
+						<input type="text" id="sender" value="TELIA">
+					</div>
+					<div class="group extra sms">
+						<input type="hidden" id="msg-name">
+						<h3>SEARCH</h3>
+						<input type="text" id="search" onchange="search();">
+					</div>
+					<div class="group extra sms">
+						<h3>MESSAGE NAME</h3>
+						<input type="hidden" id="selected_message">
+						<select class="dropdown" id="msg-name-select" onchange="showSelctedMessage()">
+							<option value="">Select a message..</option>
+						</select>
+					</div>
+					<div class="group extra sms">
+						<h3>MESSAGE CONTENT</h3>
+						<textarea readonly id="message" cols="60" rows="6" class="slds-textarea"></textarea>
+					</div>
+					<div class="group extra telesales fb google">
+						<h3>VALIDITY TIME</h3>
+						<input type="date" id="validity" name="validity">
+					</div>
+					<div class="group extra telesales letter ">
+						<h3>PARTNER</h3>
+						<input type="hidden" id="partner" value="SOLDEM">
+						<select class="dropdown" id="ppartner" onchange="partner()">
+						</select>
+					</div>
+
+					<div class="group extra email">
+						<h3>Email id</h3>
+						<input type="text" id="emailid">
+					</div>
+				</div>
+		</main>
+	</div>
+	</div>
+	<div class="footer"></div>
+	<script>
+		setTimeout(initiate, 500);
+		function initiate() {
+			
+			for(var h = 0; h < document.getElementById("pchannel").options.length; h++){
+				if(document.getElementById("pchannel").options[h].value == $('#channel').val()){
+					document.getElementById("pchannel").selectedIndex = h;
+					break;
+				}
+			}
+	
+			//document.getElementById("pchannel").value = document.getElementById("channel").value;
+			$("#header").html("WELCOME TO TELIA CUSTOM ACTIVITY!");
+			//$("#pcell").val($("#cell").val());
+			//$("#cprogram").val($("#program").val());
+			if ($('#production').val() != "false") {
+				$('#prod').prop('checked', true);
+			} else {
+				$('#prod').prop('checked', false);
+			}
+			channel();
+			$("#partner").val($("#ppartner").val());
+
+		}
+		function prodChange() {
+			$("#production").val($("#prod").prop("checked"));
+		}
+		function cell() {
+			$("#cell").val($("#pcell").val());
+		}
+		function cprogram() {
+			$("#program").val($("#cprogram").val());
+		}
+		function partner() {
+			$("#partner").val($("#ppartner").val());
+		}
+
+	</script>
+	<script>
+		var mlist;
+		function getMessages() {
+			var msgs;
+			$.ajax({
+				type: "get",
+				url: "https://mc001macy.ddc.teliasonera.net/smsprev",
+				contentType: "application/json; charset=utf-8",
+				headers: {
+					"Access-Control-Allow-Headers": "x-requested-with, *"
+				},
+				async: false,
+				success: function (data) {
+					msgs = data;
+				},
+				error: function () {
+					console.log('error getting messages');
+				}
+			})
+			mlist = JSON.parse(msgs);
+			return JSON.parse(msgs);
+		}
+
+		function showMessages(data) {
+			var msgs = data;
+			$.each(msgs, (i, msg) => {
+				$('#msg-name-select').append('<option value="' + msg.name + '">' + msg.name + '</option>')
+			})
+		}
+
+		function sms() {
+			var msgs = getMessages();
+			showMessages(msgs);
+			$("#msg-name-select").change(function () {
+				var msgSelected = $("select#msg-name-select option:selected").replace(/(?:\r\n|\r|\n)/g, '\n');;
+				$.each(msgs, (i, msg) => {
+					if (msg.name.trim() === msgSelected.val().trim()) {
+						if (typeof msg.content === 'undefined') {
+							$("#message").val('');
+						} else {
+							$("#message").val(msg.content);
+						}
+					}
+				})
+			});
+		}
+
+		function search() {
+			var x = document.getElementById("msg-name-select");
+			var a = x.options.length;
+			for (var h = 0; h < a; h++) {
+				x.remove(0);
+			}
+			var search = document.getElementById("search").value.toLowerCase();
+			var first = 1;
+			for (var h = 0; h < mlist.length; h++) {
+				var option = document.createElement("option");
+				option.text = mlist[h]["name"];
+				option.value = mlist[h]["name"];
+				if (typeof (search) !== "undefined" && mlist[h]["name"].toLowerCase().includes(search)) {
+					x.add(option);
+					if (first == 1) {
+						first = 0;
+						$("#message").val(mlist[h]["content"]);
+					}
+				}
+			}
+
+		}
+		
+		function showSelctedMessage(){
+			var value = $('#msg-name-select :selected').text();
+			for (var h = 0; h < mlist.length; h++) {
+				if(mlist[h]["name"]==value){
+					$("#message").val(mlist[h]["content"]);
+				}
+				
+			}
+		}
+		
+	</script>
 </body>
 
 </html>

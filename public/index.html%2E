@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Telia</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="customnoppa.css">
+	<link rel="icon" href="favicon.png">
+
+	<script type="text/javascript" src="js/jquery-1.2.6.min.js"></script>
+	<script type="text/javascript" src="js/require.js"></script>
+    <script type="text/javascript">
+        (function () {
+            var config = {
+                baseUrl: 'js'
+            };
+
+            var dependencies = [
+                'customActivity'
+            ];
+
+            require(config, dependencies);
+        })();
+    </script>
+	<script type="text/javascript">
+		function channel(){
+			document.getElementById("channel").value = document.getElementById("pchannel").value;
+
+			if(document.getElementById("channel").value == "SMS"){		
+				var message = document.getElementById("message").value;
+				document.getElementById("sms").innerHTML = '<p>Sender name</p><input type="text" id="sender" value="TELIA"><p>Message</p><textarea id="message" cols="60" rows="6" class="slds-textarea"></textarea>';
+				document.getElementById("message").value = message;
+			}else{
+				document.getElementById("sms").innerHTML = '<input type="hidden" id="message">';
+			}			
+			if(document.getElementById("channel").value == "Email-level Holdout"){		
+				var emailid = document.getElementById("emailid").value;
+				document.getElementById("holdout").innerHTML = '<p>Email id</p><input type="text" id="emailid">';
+				document.getElementById("emailid").value = emailid;
+			}else{
+				document.getElementById("holdout").innerHTML = '<input type="hidden" id="emailid">';
+			}				
+	
+		}
+	</script>
+	</head>
+
+<body>
+
+
+    <div id="step1" class="step">
+        <div class="slds-grid">
+
+            <main class="slds-col">
+				<div class="header" ><h1 id='header'>Loading saved values...</h1></div>
+				<div class="container">
+					<h2>Please have your entry source configured and journey saved BEFORE configuring this activity. If you make changes to the entry source please reconfigure this.</h2>
+				</div>	
+
+
+				<div class="formi">
+
+				<div class="group">
+					<p>Channel type</p>
+					<input type="hidden" id="channel"> 
+					<select class="dropdown" id="pchannel" onchange="channel();">
+						<option  value="Journey-level Holdout">Journey-level Holdout</option>
+						<option  value="Email-level Holdout">Email-level Holdout</option>
+						<option   value="SMS">SMS</option>
+						<option  value="Email metadata>Email metadata</option>
+						<!-- <option value="Aspa">Aspa</option> -->
+						<!-- <option value="Telesales_X">Telesales X</option> -->
+						<!-- <option value="Direct_mail_X">Direct mail X</option> -->
+					</select><span class="highlight"></span>
+					<span class="bar"></span>
+				
+				</div>
+
+				<div class="group">
+					<p>Campaign</p>
+				<textarea class="campaign-text" id="campaign" required class="slds-textarea"></textarea>
+				
+				</div>
+				
+				<div class="group">
+					<p>Treatment</p>
+				<input type="text" required id="treatment">
+
+				<div class="group">
+					<p>Description</p>
+				<input type="text" required id="description">
+				</div>
+				
+				<div id="sms">
+					<input type="hidden" id="message">
+				</div>	
+					
+				<div id="holdout">
+					<input type="hidden" id="emailid">
+				</div>	
+				
+			</div>
+		</div>
+            </main>
+        
+        </div>
+    </div>
+
+<script type="text/javascript">
+setTimeout(myFunction, 500);
+
+function myFunction(){
+	document.getElementById("pchannel").value = document.getElementById("channel").value;
+	document.getElementById("header").innerHTML = "Welcome to Telia custom activity!";
+	channel();
+}
+</script>
+
+</body>
+
+</html>

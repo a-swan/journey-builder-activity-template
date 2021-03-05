@@ -1,0 +1,243 @@
+@font-face {
+    font-family: Pebble;
+    src: url(https://fonts.avaus.fi/telia/Pebble_W_Rg.eot);
+    src: url(https://fonts.avaus.fi/telia/Pebble_W_Rg.eot?#iefix) format("embedded-opentype"), url(https://fonts.avaus.fi/telia/Pebble_W_Rg.woff2) format("woff2"), url(https://fonts.avaus.fi/telia/Pebble_W_Rg.woff) format("woff"), url(https://fonts.avaus.fi/telia/Pebble_W_Rg.ttf) format("truetype")
+}
+
+body {
+    text-align: center;
+    margin: 0;
+    font-family: Helvetica;
+}
+
+h1{
+    font-family: Pebble Caps;
+    color: #fff;
+    font-size: 35px;
+}
+
+h2{
+    font-family: Pebble;
+    color: #990AE3;
+    font-size: 25px;
+
+}
+
+h3{
+    font-family: Pebble;
+    color: #4E4E4E;
+    font-size: 20px;
+    margin-bottom: 5px;
+
+}
+
+
+.header{
+    position: relative;
+    top: -25px;
+    width: 100%;
+    height: 200px;
+    background-image: url("bg.png");
+    background-color: #990AE3;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#header{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.footer{
+    z-index: -1;
+    margin-top: -100px;
+    background-image: url("1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    bottom: 0;
+    background-color: #990AE3;
+    height: 300px;
+    width: 100%;
+}
+
+@media (min-width:250px) and (max-width:600px) {
+    #header{
+        font-size: 2.5em;
+        word-break: break-word;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+.container{
+    position: relative;
+    left: 12.5%;
+    width: 75%;
+    margin-bottom: 50px;
+    margin-top: 15px;
+}
+
+input 				{
+    font-size:18px;
+    background: transparent;
+    width:300px;
+    border:none;
+    border-bottom:1.5px solid #990AE3;
+    color:#4E4E4E; 
+    -webkit-box-shadow: 0 4px 6px -6px #222;
+    -moz-box-shadow: 0 4px 6px -6px #222;
+    box-shadow: 0 4px 6px -6px #222;
+  }
+  input:focus 		{ outline:none; }
+
+
+.formi 			  { 
+    position:relative; 
+    width: 50%;
+    left: 25%;
+}
+
+.group 			  { 
+    margin-bottom:30px; 
+
+}
+.dropdown{
+    width: 300px;
+    height: 30px;
+    border: 1.5px solid #990AE3;
+    border-radius: 5px;
+    box-shadow: 1px 1px 7px #D7D7D7;
+}
+
+#message{
+    width: 300px;
+    height: 100px;
+    border: 1.5px solid #990AE3;
+    border-radius: 5px;
+    resize: none;
+    box-shadow: 1px 1px 7px #D7D7D7;
+    color: #4E4E4E;
+}
+
+.campaign-text{
+    width: 300px;
+    color: #4E4E4E;
+    height: 100px;
+    border: 1.5px solid #990AE3;
+    border-radius: 5px;
+    resize: none;
+    box-shadow: 1px 1px 7px #D7D7D7;
+}
+
+.campaign-text:focus:hover{
+    width: 300px;
+    height: 100px;
+    border: 1px solid #990AE3;
+}
+
+
+
+
+p {
+    color:#4E4E4E; 
+    font-size:18px;
+    font-weight:normal;
+    margin-bottom: 5px;
+}
+
+option{
+    color:#4E4E4E; 
+    font-size:16px;
+    font-weight:normal;
+    border: 1px solid #990AE3;
+    font-family: Helvetica;
+}
+
+select{
+    color:#4E4E4E; 
+    font-family: Helvetica;
+    font-size:16px;
+    font-weight:normal;
+    border: 1px solid #990AE3;
+}
+
+textarea{
+    color:#4E4E4E; 
+    font-size:16px;
+    font-weight:normal;
+    font-family: Helvetica;
+    
+}
+
+textarea:focus {
+    outline: none !important;
+}
+
+select,option:focus {
+    outline: none !important;
+    background-color: none !important;
+    
+}
+input:focus { 
+    outline: none !important;
+}
+
+#message{
+    width: 300px;
+    font-family: Helvetica;
+}
+
+.checkbox-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 29px;
+}
+ 
+.checkbox-box {
+    margin-right: 20px;
+}
+ 
+.checkbox-label {
+    top: 3px;
+    position: relative;
+}
+ 
+.checkboxFive {
+    width: 20px;
+    position: relative;
+}
+ 
+.checkboxFive label {
+    cursor: pointer;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    background: #eee;
+    border: 2px solid #C5C5C5;
+}
+ 
+.checkboxFive label:after {
+    opacity: 0;
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 5px;
+    background: transparent;
+    top: 4px;
+    left: 4px;
+    border: 3px solid #990ae3;
+    border-top: none;
+    border-right: none;
+    transform: rotate(-45deg);
+}
+ 
+.checkboxFive input[type=checkbox]:checked+label:after {
+    opacity: 1;
+}
